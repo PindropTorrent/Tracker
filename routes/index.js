@@ -50,5 +50,17 @@ router.get('/getTracker', function(req, res, next){
 		}
 	});
 });
+router.get('/addSeeder', function(req, res, next){
+	connection.query({
+		sql : "insert into servers values(? ,?)",
+		values : [req.query.fileId + ".txt", req.query.ipAdd]
+	}, function(err, r, f){
+		if(err){
+			console.log(err);
+		}else{
+			res.send("done");
+		}
+	});
+});
 
 module.exports = router;
