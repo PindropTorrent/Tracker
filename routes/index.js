@@ -63,4 +63,27 @@ router.get('/addSeeder', function(req, res, next){
 	});
 });
 
+router.get('/restore', function(req, res, next){
+	connection.query({
+		sql : 'delete from servers'
+	}, function(err, r, f){
+		if(err){
+			console.log(err);
+			res.send('error');
+		}else{
+			connection.query({
+				sql : 'insert into servers values (?, ?)',
+				values : ["g.txt", "13.126.140.55"]
+			},function(err, r, f){
+				if(err){
+					console.log(err);
+					res.send('error');
+				}else{
+					res.send('done');
+				}
+			});
+		}
+	});
+});
+
 module.exports = router;
