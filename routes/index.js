@@ -8,7 +8,7 @@ var handleDisconnect = function(){
 							host:'localhost',
 							user : 'root',
 							password : '',
-							database : 'torrent'
+							database : 'CN'
 						});
 		 
 	connection.connect(function(err){
@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/getTracker', function(req, res, next){
 	connection.query({
-		sql : "select * from tracker_list where file_id = ?",
+		sql : "select * from servers where fileId = ?",
 		values : [req.query.fileId]
 	}, function(err, r, f){
 		if(err){
