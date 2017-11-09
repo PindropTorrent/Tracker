@@ -41,7 +41,7 @@ router.get('/', function(req, res, next) {
 router.get('/getTracker', function(req, res, next){
 	connection.query({
 		sql : "select * from servers where fileId = ?",
-		values : [req.query.fileId]
+		values : [req.query.fileId + ".txt"]
 	}, function(err, r, f){
 		if(err){
 			console.log(err);
